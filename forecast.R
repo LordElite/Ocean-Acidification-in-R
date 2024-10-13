@@ -206,7 +206,7 @@ total_data_co2_sec <- data.frame( Date = predictions_co2_sec$Date,
 
 co2_forecast_section_plot <- ggplot() + 
   geom_line(data = total_data_co2_sec, 
-            aes(x = Date, y = Actual_value, group = 1, color = "Original pH data"), size = 1.05) + 
+            aes(x = Date, y = Actual_value, group = 1, color = "Original CO2 data"), size = 1.05) + 
   geom_line(data = total_data_co2_sec, 
             aes(x = Date, y = Forecasted_value, color = "Predicted CO2 Data"), size = 1.05) + 
   labs(x = "Date (Monthly)", y = "CO2 emissions (ppm)", color = "Legend") +
