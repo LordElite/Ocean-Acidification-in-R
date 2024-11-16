@@ -114,6 +114,7 @@ db_co2_1 <-subset(co2, (year > 1958 | (year >= 1958 & month >= 3)) &
 db_co2_1$date <-as.Date(paste(db_co2_1$year, db_co2_1$month, "01", sep = "-")) # CO2 column union
 sb_co2_1 <- data.frame(Date = db_co2_1$date, CO2 = db_co2_1$monthly_average)
 sb_co2_1$index <- c(1:length(sb_co2_1$Date))
+
 #function to optimize span parameter in CO2 dataset
 calcSSE_co2_1 <- function(x){
   loessMod <- try(loess(CO2 ~ index, data=sb_co2_1, span=x), silent=T)
@@ -132,9 +133,9 @@ optimal_span_co2_1 <- optimize(calcSSE_co2_1, c(0.01,1))
 # plotting
 co2_1_optimal_loess_plot <- ggplot() + 
   geom_point(data = sb_co2_1, 
-             aes(x = Date, y = CO2,, color = "Data Points"), size = 0.7) +
+             aes(x = Date, y = CO2, color = "Data Points"), size = 0.7) +
   geom_smooth(data = sb_co2_1, 
-              aes(x = Date, y = CO2,, 
+              aes(x = Date, y = CO2, 
                   color = "span: 0.067"), 
               method = 'loess', 
               span = optimal_span_co2_1$minimum, 

@@ -249,9 +249,24 @@ ggsave(plot = total_disp_co2_subset_1,
        dpi = 300,
        width = 8,
        height = 6, units = "in")
+
 #pH mean test
 am <- rep(mean(ph_ocean$pH), length(ph_ocean$pH))
 mean_dataframe <- data.frame(Mean = am, Date = ph_ocean$Date)
+
+#calculating two means separated by the total mean
+subset_ph1 <- c()
+subset_ph2 <- c()
+total_mean_ph <- mean(ph_ocean$pH)
+for (k in c(1:length(ph_ocean$pH))) {
+  if(ph_ocean$pH[k] > total_mean_ph ){
+    subset_ph1 <- append(subset_ph1, ph_ocean$pH[k])
+  }
+  else if(ph_ocean$pH[k] < total_mean_ph){
+    subset_ph2 <- append(subset_ph2, ph_ocean$pH[k])
+  }
+}
+
 # plotting the original data and the mean line
 ph_mean_plot <- ggplot() + 
   geom_line(data = ph_ocean, 
@@ -260,6 +275,16 @@ ph_mean_plot <- ggplot() +
             aes(x = Date, y = Mean, group = 1, color = "Mean"), size = 1) +
   labs(x = "Date (Monthly)", y = "acidity ( pH )", color = "Legend") +# oceanic Ph monthly plotted
   scale_color_viridis_d(option = "D")  +
+  annotate("text", x = max(ph_ocean$Date[length(ph_ocean$Date)/3]), 
+           y = max(ph_ocean$pH), 
+           label =  paste("first mean: ", round(mean(subset_ph1), 3)), 
+           color = "blue", 
+           hjust = 0) +
+  annotate("text", x = max(ph_ocean$Date[length(ph_ocean$Date)/3]), 
+           y = min(ph_ocean$pH), 
+           label =  paste("second mean: ", round(mean(subset_ph2), 3)), 
+           color = "blue", 
+           hjust = 0) +
     theme_minimal()
 
 ph_mean_plot
@@ -301,6 +326,21 @@ dev.off()
 #pH mean test
 co2_am <- rep(mean(sb_co2$CO2), length(sb_co2$CO2))
 co2_dataframe <- data.frame(Mean = co2_am, Date = sb_co2$Date)
+
+#calculating two means separated by the total mean
+subset_co21 <- c()
+subset_co22 <- c()
+total_mean_co2 <- mean(sb_co2$CO2)
+for (j in c(1:length(sb_co2$CO2))) {
+  if(sb_co2$CO2[j] > total_mean_co2 ){
+    subset_co21 <- append(subset_co21, sb_co2$CO2[j])
+  }
+  else if(sb_co2$CO2[j] < total_mean_co2){
+    subset_co22 <- append(subset_co22, sb_co2$CO2[j])
+  }
+}
+
+
 # plotting the original data and the mean line
 co2_mean_plot <- ggplot() + 
   geom_line(data = sb_co2, 
@@ -309,6 +349,16 @@ co2_mean_plot <- ggplot() +
             aes(x = Date, y = Mean, group = 1, color = "Mean"), size = 1) +
   labs(x = "Date (Monthly)", y = "CO2 Emissions ( ppm )", color = "Legend") +# oceanic Ph monthly plotted
   scale_color_viridis_d(option = "D")  +
+  annotate("text", x = max(sb_co2$Date[length(sb_co2$Date)/3]), 
+           y = max(sb_co2$CO2), 
+           label =  paste("first mean: ", round(mean(subset_co21), 3)), 
+           color = "blue", 
+           hjust = 0) +
+  annotate("text", x = max(sb_co2$Date[length(sb_co2$Date)/3]), 
+           y = min(sb_co2$CO2), 
+           label =  paste("second mean: ", round(mean(subset_co22), 3)), 
+           color = "blue", 
+           hjust = 0) +
   theme_minimal()
 
 co2_mean_plot

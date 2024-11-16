@@ -8,6 +8,8 @@ library(tidyr)
 library(dplyr)
 library(corrplot)
 library(energy)  #pack to perform distance correlation
+library(scico)
+library(viridis)
 
 #ph dataset
 ocean <- data.frame(read.csv('directory/seawater-ph.csv')) # oceanic pH database 
@@ -67,3 +69,4 @@ ggsave(plot = ph_co2_plot,
        dpi = 300,
        width = 8,
        height = 6, units = "in")
+

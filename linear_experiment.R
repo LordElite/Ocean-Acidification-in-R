@@ -4,6 +4,9 @@ rm(list = ls())
 library(ggplot2)
 library(scico)
 library(viridis)
+library(robutsbase)
+library(MASS)
+library(L1pack)
 
 #ph dataset
 ocean <- data.frame(read.csv('directory/seawater-ph.csv')) # oceanic pH database 

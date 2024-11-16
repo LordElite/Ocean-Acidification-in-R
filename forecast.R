@@ -53,7 +53,7 @@ ph_forecast_plot <- autoplot(op_predict_ph)
 ph_forecast_plot
 
 ggsave(plot = ph_forecast_plot, 
-       "fig25.jpg",
+       "fig27.jpg",
        dpi = 300,
        width = 8,
        height = 6, units = "in")
@@ -78,7 +78,7 @@ time_line_ph_forecast_plot <- ggplot() +
 time_line_ph_forecast_plot
 # Save the plot as a JPG file with 300 DPI
 ggsave(plot = time_line_ph_forecast_plot, 
-       "fig26.jpg", dpi = 300, width = 8, height = 6, units = "in")
+       "fig28.jpg", dpi = 300, width = 8, height = 6, units = "in")
 
 #applying prediction on a section of the data
 ph_section <- head(ph_ocean,180)
@@ -92,7 +92,7 @@ arima_section_ph_plot <- autoplot(section_prediction_ph)
 arima_section_ph_plot
 # Save the plot as a JPG file with 300 DPI
 ggsave(plot = arima_section_ph_plot, 
-       "fig27.jpg", dpi = 300, width = 8, height = 6, units = "in")
+       "fig29.jpg", dpi = 300, width = 8, height = 6, units = "in")
 
 #generating a dataframe with the new data sectioned
 predictions_ph_sec  <- data.frame(Date = seq(from = ph_ocean$Date[181],
@@ -124,7 +124,7 @@ section_ph_forecast_plot <- ggplot() +
 section_ph_forecast_plot 
 
 ggsave(plot = section_ph_forecast_plot , 
-       "fig28.jpg", dpi = 300, width = 8, height = 6, units = "in")
+       "fig30.jpg", dpi = 300, width = 8, height = 6, units = "in")
 
 
 # CO2 dataset
@@ -150,7 +150,7 @@ co2_forecast_plot <- autoplot(op_predict_co2)
 co2_forecast_plot
 
 ggsave(plot = co2_forecast_plot, 
-       "fig29.jpg",
+       "fig31.jpg",
        dpi = 300,
        width = 8,
        height = 6, units = "in")
@@ -174,7 +174,7 @@ total_co2_part_forecast_plot <- ggplot() +
 total_co2_part_forecast_plot
 
 ggsave(plot = total_co2_part_forecast_plot, 
-       "fig30.jpg",
+       "fig32.jpg",
        dpi = 300,
        width = 8,
        height = 6, units = "in")
@@ -216,7 +216,8 @@ co2_forecast_section_plot <- ggplot() +
 co2_forecast_section_plot
 
 ggsave(plot = co2_forecast_section_plot, 
-       "fig31.jpg",
+       "fig33.jpg",
        dpi = 300,
        width = 8,
        height = 6, units = "in")
+
